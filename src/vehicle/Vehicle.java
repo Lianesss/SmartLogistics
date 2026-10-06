@@ -20,13 +20,15 @@ public abstract class Vehicle {
 
     public abstract void move();
 
-    public void load(double weight){
-        if(currentLoadKg+weight<=maxCapacityKg){
-            currentLoadKg+=weight;
+    //инкапсуляция
+    public void load(double weight) {
+        if (currentLoadKg + weight <= maxCapacityKg) {
+            currentLoadKg += weight;
         } else {
             System.out.println("Превышен лимит загрузки для " + id);
         }
     }
+
     public String getId() {
         return id;
     }
@@ -39,6 +41,9 @@ public abstract class Vehicle {
         return currentLoadKg;
     }
 
+    // полиморфизм - Одинаковый метод ведёт себя по-разному
+    // в зависимости от реального объекта.
+    // интерфейс - пока что хз
 }
 
 
