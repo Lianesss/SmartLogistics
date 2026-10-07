@@ -12,6 +12,7 @@ public abstract class Vehicle {
     public Vehicle(String id, Double maxCapacityKg) {
         this.id = id;
         if (maxCapacityKg <= 0) {
+            // создает новый объект ошибки
             throw new IllegalArgumentException("Грузоподъёмность должна быть > 0");
         }
         this.maxCapacityKg = maxCapacityKg;
