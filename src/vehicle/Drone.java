@@ -5,9 +5,7 @@ public class Drone extends Vehicle {
     private int batteryLevel;
 
     public Drone(String id) {
-        super(id, 5.0);
-
-
+        super(id, 100.0);
     }
 
     @Override
@@ -23,6 +21,4 @@ public class Drone extends Vehicle {
     public int getBatteryLevel() {
         return batteryLevel;
     }
-
-
 }
