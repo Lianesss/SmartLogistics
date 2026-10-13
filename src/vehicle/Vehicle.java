@@ -39,7 +39,7 @@ public abstract class Vehicle {
         if (currentLoadKg + weight <= maxCapacityKg) {
             currentLoadKg += weight;
             cargoList.add(new CargoItem("FastLoad", weight));
-            System.out.println("Загружено " + weight + "кг в тс" + id);
+            System.out.println("Загружено " + weight + "кг в тс " + id);
         } else {
             System.out.println("Превышен лимит загрузки для " + id);
         }
@@ -53,7 +53,7 @@ public abstract class Vehicle {
 
             // загрузка самого груза в список
             cargoList.add(item);
-            System.out.println("Загружен груз '" + item.getName() + "' (" + weight + "кг) в тс" + id);
+            System.out.println("Загружен груз '" + item.getName() + "' (" + weight + "кг) в тс " + id);
         } else {
             System.out.println("Превышен лимит загрузки для " + id);
         }
