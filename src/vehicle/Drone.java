@@ -16,6 +16,7 @@ public class Drone extends Vehicle {
             batteryLevel = 0;
         }
 
+        System.out.println("Дрон " + getId() + " летит по воздуху, заря батареи:" + batteryLevel + "%");
     }
 
     public int getBatteryLevel() {

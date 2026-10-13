@@ -28,11 +28,10 @@ public abstract class Vehicle {
 
     public abstract void move();
 
-    // полиморфизм
-
+    // полиморфизм ad-hoc
     // ТОЛЬКО ВЕС
     public void load(double weight) {
-        if (weight < 0) {
+        if (weight <= 0) {
             System.out.println("Вес должен быть положительным.");
             return;
         }
@@ -40,7 +39,7 @@ public abstract class Vehicle {
         if (currentLoadKg + weight <= maxCapacityKg) {
             currentLoadKg += weight;
             cargoList.add(new CargoItem("FastLoad", weight));
-            System.out.println("Загружено" + weight + "кг в тс" + id);
+            System.out.println("Загружено " + weight + "кг в тс" + id);
         } else {
             System.out.println("Превышен лимит загрузки для " + id);
         }

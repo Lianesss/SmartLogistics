@@ -14,7 +14,7 @@ public class Truck extends Vehicle {
 
     @Override
     public void move() {
-
+        System.out.println("Грузовик " + getId() + " едет по трассе со скоростью 70 км/ч");
     }
 
     public boolean getHasTrailer() {
