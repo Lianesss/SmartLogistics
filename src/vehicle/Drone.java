@@ -1,9 +1,9 @@
 package vehicle;
 
 public class Drone extends Vehicle {
-    private double latitude;
-    private double longitude;
-    private double altitude;
+    private double latitude = 50.2;
+    private double longitude = 50.2;
+    private double altitude = 20.4;
 
     private int batteryLevel;
 

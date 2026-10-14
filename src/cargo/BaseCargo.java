@@ -1,5 +1,7 @@
 package cargo;
 
+import interfaces.ICargo;
+
 //implements - реализующий ICargo
 public abstract class BaseCargo implements ICargo {
     private String id;

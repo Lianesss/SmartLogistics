@@ -3,8 +3,8 @@ import interfaces.ITrackable;
 
 public class Truck extends Vehicle implements ITrackable{
 
-    private double latitude;
-    private double longitude;
+    private double latitude = 70.8;
+    private double longitude = 88.0;
 
     //final - означает что переменная меняться только один раз при вызове конструктора
     private final boolean hasTrailer;
@@ -18,8 +18,8 @@ public class Truck extends Vehicle implements ITrackable{
 
     @Override
     public void move() {
-        latitude+=0.1;
-        longitude+=0.1;
+        latitude+=0.5;
+        longitude+=0.5;
         System.out.println("Грузовик " + getId() + " едет по трассе со скоростью 70 км/ч");
     }
 
