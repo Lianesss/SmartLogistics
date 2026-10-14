@@ -1,6 +1,9 @@
 package vehicle;
 
 public class Drone extends Vehicle {
+    private double latitude;
+    private double longitude;
+    private double altitude;
 
     private int batteryLevel;
 
@@ -11,7 +14,9 @@ public class Drone extends Vehicle {
 
     @Override
     public void move() {
-
+        latitude+=0.1;
+        longitude+=0.1;
+        altitude+=0.1;
         if (batteryLevel >= 5) {
             batteryLevel -= 5;
         } else {
