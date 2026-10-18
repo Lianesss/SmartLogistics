@@ -1,4 +1,8 @@
 import cargo.CargoItem;
+import cargo.FragileItem;
+import cargo.StandartBox;
+import cargo.Warehouse;
+import service.Report;
 import vehicle.Car;
 import vehicle.Truck;
 import vehicle.Drone;
@@ -72,5 +76,50 @@ public class Main {
 
         // Мониторинг координат
         center.monitorFleet(trackableFleet);
+
+        // Дженерик - универсальный код не зависящий от конкретных типов +- работает как шаблонные функции в плюсах
+
+
+        // ПРОВЕРКА ЭТАПА 4
+        System.out.println("\nДемонстрация Дженериков (Warehouse и Report)");
+        Warehouse<StandartBox> standartBoxWarehouse= new Warehouse<>();
+        standartBoxWarehouse.addItem(new StandartBox("BOX-101", "Большая коробка", 25.5));
+        standartBoxWarehouse.addItem(new StandartBox("BOX-102", "Маленькая коробка коробка", 5.0));
+        standartBoxWarehouse.addItem(new StandartBox("BOX-103", "Маленькая коробка коробка", 10.0));
+        standartBoxWarehouse.addItem(new StandartBox("BOX-104", "Маленькая коробка коробка", 15.0));
+        standartBoxWarehouse.addItem(new StandartBox("BOX-105", "Маленькая коробка коробка", 25.0));
+
+        Warehouse<FragileItem> fragileItemWarehouse = new Warehouse<>();
+        fragileItemWarehouse.addItem(new FragileItem("FRAG-555", "Хрупкое зеркало", 12.0));
+        fragileItemWarehouse.addItem(new FragileItem("FRAG-556", "Хрупкое зеркало", 16.0));
+        fragileItemWarehouse.addItem(new FragileItem("FRAG-557", "Хрупкое зеркало", 19.0));
+        fragileItemWarehouse.addItem(new FragileItem("FRAG-558", "Хрупкое зеркало", 21.0));
+
+        //standartBoxWarehouse.addItem(new FragileItem("FRAG-555", "Хрупкое зеркало", 12.0));
+        //Класс Warehouse использует параметризацию типов (дженерики) <T extends ICargo>.
+        //         Когда мы создали standardBoxWarehouse, мы жестко указали конкретный тип: Warehouse<StandardBox>.
+        //         Это означает, что внутрь этого конкретного объекта компилятор разрешает добавлять
+        //         ИСКЛЮЧИТЕЛЬНО объекты класса StandardBox (или его наследников).
+        //         FragileItem является соседним классом-наследником BaseCargo, но он НЕ является StandardBox.
+        //         Строгая типизация Java не позволяет смешивать несовместимые типы на этапе компиляции,
+        //         защищая нас от ошибок в будущем.
+
+        System.out.println("Проверка ограничения типов пройдена успешно (ошибка компиляции защищает склад от чужих типов).");
+
+        // ОТЧЕТЫ
+        System.out.println("--- Генерация отчетов ---");
+        // отчет стандартного склада
+        Report<Warehouse<StandartBox>> standartReport = new Report<>(standartBoxWarehouse);
+        System.out.println("Отчет по складу стандартных коробок:");
+        standartReport.printReport();
+        standartBoxWarehouse.printManifest();
+
+        System.out.println();
+
+        //отчет хрупких грузов
+        Report<Warehouse<FragileItem>> fragileReport = new Report<>(fragileItemWarehouse);
+        System.out.println("Отчет по складу хрупких грузов:");
+        fragileReport.printReport();
+        fragileItemWarehouse.printManifest();
     }
 }
