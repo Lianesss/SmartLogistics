@@ -1,6 +1,8 @@
 package vehicle;
 
-public class Drone extends Vehicle {
+import interfaces.ITrackable;
+
+public class Drone extends Vehicle implements ITrackable {
     private double latitude = 50.2;
     private double longitude = 50.2;
     private double altitude = 20.4;
@@ -28,5 +30,16 @@ public class Drone extends Vehicle {
 
     public int getBatteryLevel() {
         return batteryLevel;
+    }
+
+
+    @Override
+    public String getCurrentCoordinates() {
+        return "Широта: " + latitude + ", Долгота: " + longitude + ", Высота: " + altitude + "м";
+    }
+
+    @Override
+    public void sendStatusUpdate() {
+        System.out.println("Дрон " + getId() + " [GPS стаутс]: " + getCurrentCoordinates());
     }
 }

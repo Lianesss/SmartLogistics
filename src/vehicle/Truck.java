@@ -29,11 +29,11 @@ public class Truck extends Vehicle implements ITrackable{
 
     @Override
     public String getCurrentCoordinates() {
-        return "";
+        return "Широта: " + latitude + ", Долгота: " + longitude;
     }
 
     @Override
     public void sendStatusUpdate() {
-
+        System.out.println("Грузовик " + getId() + " [GPS статус]: " + getCurrentCoordinates());
     }
 }
