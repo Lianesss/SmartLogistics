@@ -18,8 +18,8 @@ public class Truck extends Vehicle implements ITrackable{
 
     @Override
     public void move() {
-        latitude+=0.5;
-        longitude+=0.5;
+        latitude+=10;
+        longitude+=10;
         System.out.println("Грузовик " + getId() + " едет по трассе со скоростью 70 км/ч");
     }
 

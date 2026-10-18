@@ -16,9 +16,9 @@ public class Drone extends Vehicle implements ITrackable {
 
     @Override
     public void move() {
-        latitude+=0.1;
-        longitude+=0.1;
-        altitude+=0.1;
+        latitude+=10;
+        longitude+=10;
+        altitude+=10;
         if (batteryLevel >= 5) {
             batteryLevel -= 5;
         } else {

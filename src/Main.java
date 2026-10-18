@@ -3,6 +3,8 @@ import vehicle.Car;
 import vehicle.Truck;
 import vehicle.Drone;
 import vehicle.Vehicle;
+import service.LogisticsCenter;
+import interfaces.ITrackable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,19 +14,16 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("ТЕСТ\n");
 
-        // Создаем разные транспортные средства
+        // Разные транспортные средства
         Vehicle myCar = new Car("CAR-777", 1200);
-        // Грузовик с прицепом: лимит 10000 + 5000 = 15000 кг
         Truck heavyTruck = new Truck("TR-01", 10000.0, true);
         Drone deliveryDrone = new Drone("DRONE-99");
 
-        // Тестируем перегрузку метода load()
+        // Тест перегрузки метода load()
         System.out.println("--- Проверка загрузки ---");
-
-        // просто вес (в Vehicle)
         myCar.load(300.0);
 
-        // одиночный именованный груз (CargoItem)
+        // Одиночный именованный груз (CargoItem)
         CargoItem box1 = new CargoItem("Коробка с книгами", 150.0);
         heavyTruck.load(box1);
 
@@ -36,7 +35,7 @@ public class Main {
 
         System.out.println();
 
-        // Собираем всё в общий список для проверки полиморфизма (пункт 2.3)
+        // Проверка полиморфизма (пункт 2.3)
         List<Vehicle> allVehicles = new ArrayList<>();
         allVehicles.add(myCar);
         allVehicles.add(heavyTruck);
@@ -53,5 +52,25 @@ public class Main {
         System.out.println("\n--- Дрон летит еще раз ---");
         deliveryDrone.move();
         deliveryDrone.move();
+
+        System.out.println();
+
+        // Проверка этапа 3
+        List<ITrackable> trackableFleet = new ArrayList<>();
+        trackableFleet.add(heavyTruck);
+        trackableFleet.add(deliveryDrone);
+        //trackableFleet.add(myCar); car - не реализует интерфейс ITrackable
+
+        LogisticsCenter center = new LogisticsCenter();
+        center.dispatch(trackableFleet); // Отправка статуса
+
+        // Транспорт в движении - смена координат
+        System.out.println();
+        System.out.println("[Транспорт в движении...]");
+        heavyTruck.move();
+        deliveryDrone.move();
+
+        // Мониторинг координат
+        center.monitorFleet(trackableFleet);
     }
 }
